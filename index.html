@@ -1,0 +1,821 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f3efe6">
+  <meta name="description" content="WEBORA — создаём современные сайты для бизнеса. Разработка сайтов под ключ для компаний и предпринимателей в России и СНГ.">
+  <title>WEBORA — сайты, которые приносят клиентов</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --blue: #2857ec;
+      --blue-dark: #1533a1;
+      --ink: #1c1e25;
+      --muted: #777b86;
+      --beige: #f3efe6;
+      --white: #fff;
+      --line: rgba(28,30,37,.12);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--ink);
+      background: var(--beige);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    button { font: inherit; }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    .header {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: var(--blue);
+      font-size: 23px;
+      font-weight: 900;
+      transform: rotate(-5deg);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-links a { transition: color .2s; }
+    .nav-links a:hover { color: var(--blue); }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 23px;
+      border: 0;
+      border-radius: 13px;
+      background: var(--blue);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .button:hover {
+      background: var(--blue-dark);
+      transform: translateY(-2px);
+    }
+
+    .button-outline {
+      color: var(--ink);
+      background: transparent;
+      border: 1px solid var(--line);
+    }
+
+    .button-outline:hover {
+      color: white;
+      background: var(--ink);
+    }
+
+    .hero {
+      padding: 105px 0 95px;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 14px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      background: var(--blue);
+      border-radius: 50%;
+    }
+
+    h1 {
+      max-width: 720px;
+      font-size: clamp(43px, 6vw, 76px);
+      line-height: 1.04;
+      letter-spacing: -4px;
+      font-weight: 900;
+    }
+
+    h1 span { color: var(--blue); }
+
+    .hero-description {
+      max-width: 510px;
+      margin: 25px 0 32px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-note {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .hero-art {
+      min-height: 440px;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .art-circle {
+      width: min(370px, 90%);
+      aspect-ratio: 1;
+      background: var(--blue);
+      border-radius: 48% 52% 62% 38% / 43% 42% 58% 57%;
+      position: absolute;
+      transform: rotate(-12deg);
+    }
+
+    .art-card {
+      position: relative;
+      z-index: 1;
+      width: 82%;
+      padding: 23px;
+      border-radius: 22px;
+      background: white;
+      box-shadow: 0 25px 70px rgba(20,35,90,.2);
+      transform: rotate(4deg);
+    }
+
+    .art-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      font-weight: 800;
+      margin-bottom: 25px;
+    }
+
+    .art-dots { display: flex; gap: 5px; }
+    .art-dots i { width: 7px; height: 7px; border-radius: 50%; background: #d7d9e0; }
+
+    .art-title {
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -1px;
+    }
+
+    .art-title span { color: var(--blue); }
+
+    .art-lines { margin-top: 18px; }
+    .art-lines i {
+      display: block;
+      height: 7px;
+      background: #edf0f7;
+      border-radius: 10px;
+      margin-top: 8px;
+    }
+    .art-lines i:nth-child(1) { width: 95%; }
+    .art-lines i:nth-child(2) { width: 70%; }
+    .art-lines i:nth-child(3) { width: 83%; }
+
+    .art-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 28px;
+    }
+
+    .art-mini-button {
+      padding: 10px 16px;
+      border-radius: 8px;
+      color: white;
+      background: var(--blue);
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .art-symbol {
+      position: absolute;
+      right: 0;
+      bottom: 35px;
+      z-index: 2;
+      width: 85px;
+      height: 85px;
+      display: grid;
+      place-items: center;
+      border-radius: 23px;
+      background: var(--beige);
+      color: var(--blue);
+      font-size: 45px;
+      font-weight: 900;
+      transform: rotate(12deg);
+      box-shadow: 0 15px 35px rgba(0,0,0,.1);
+    }
+
+    section { padding: 90px 0; }
+
+    .section-label {
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      font-size: clamp(32px, 4vw, 49px);
+      line-height: 1.12;
+      letter-spacing: -2px;
+      font-weight: 900;
+    }
+
+    .section-description {
+      max-width: 560px;
+      margin-top: 17px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .services { background: white; }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 45px;
+    }
+
+    .service-card {
+      padding: 29px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      transition: .25s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--blue);
+      box-shadow: 0 15px 35px rgba(30,50,110,.07);
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 25px;
+      border-radius: 14px;
+      background: #edf1ff;
+      color: var(--blue);
+      font-size: 23px;
+    }
+
+    .service-card h3 {
+      font-size: 18px;
+      margin-bottom: 12px;
+      letter-spacing: -.5px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .portfolio { background: var(--beige); }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 45px;
+    }
+
+    .project {
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: white;
+      border: 1px solid var(--line);
+    }
+
+    .project-preview {
+      min-height: 260px;
+      padding: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .preview-beauty { background: #eadbd8; }
+    .preview-business { background: #dfe7f2; }
+
+    .preview-window {
+      width: 85%;
+      min-height: 190px;
+      padding: 20px;
+      background: white;
+      border-radius: 13px;
+      box-shadow: 0 15px 35px rgba(0,0,0,.12);
+    }
+
+    .preview-window small {
+      display: block;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .preview-window strong {
+      display: block;
+      font-size: 25px;
+      line-height: 1.1;
+      letter-spacing: -1px;
+    }
+
+    .preview-window span {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 8px 13px;
+      background: var(--blue);
+      color: white;
+      border-radius: 5px;
+      font-size: 8px;
+      font-weight: 800;
+    }
+
+    .project-info { padding: 23px 25px 27px; }
+
+    .project-info h3 {
+      font-size: 18px;
+      margin-bottom: 7px;
+    }
+
+    .project-info p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .demo-label {
+      display: inline-block;
+      margin-top: 13px;
+      padding: 6px 10px;
+      border-radius: 20px;
+      background: #edf1ff;
+      color: var(--blue);
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .process { background: white; }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 45px;
+    }
+
+    .process-step {
+      border-top: 2px solid var(--line);
+      padding-top: 20px;
+    }
+
+    .process-number {
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 900;
+      margin-bottom: 17px;
+    }
+
+    .process-step h3 {
+      font-size: 16px;
+      margin-bottom: 9px;
+    }
+
+    .process-step p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .about {
+      background: var(--ink);
+      color: white;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .about .section-label { color: #8ea5ff; }
+    .about .section-description { color: #b9bbc4; }
+
+    .about-highlight {
+      padding: 35px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+    }
+
+    .about-highlight strong {
+      display: block;
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .about-highlight p {
+      color: #b9bbc4;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .contact { background: var(--blue); color: white; }
+
+    .contact-grid {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 35px;
+    }
+
+    .contact .section-label { color: #c9d4ff; }
+    .contact .section-heading { max-width: 650px; }
+    .contact .section-description { color: #dce4ff; }
+
+    .contact .button {
+      flex-shrink: 0;
+      background: white;
+      color: var(--blue);
+    }
+
+    .contact .button:hover { background: var(--beige); }
+
+    .footer {
+      padding: 27px 0;
+      background: var(--ink);
+      color: white;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer p {
+      color: #a5a7b0;
+      font-size: 11px;
+    }
+
+    .footer .logo { font-size: 20px; }
+    .footer .logo-mark { width: 30px; height: 30px; font-size: 18px; }
+
+    @media (max-width: 850px) {
+      .hero-grid, .about-grid { grid-template-columns: 1fr; }
+      .hero { padding: 75px 0; }
+      .hero-art { min-height: 350px; }
+      .service-grid { grid-template-columns: 1fr 1fr; }
+      .process-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (max-width: 600px) {
+      .container { width: min(100% - 30px, 1160px); }
+      .header { padding: 16px 0; }
+      .nav-links { display: none; }
+      .nav > .button { padding: 11px 13px; font-size: 11px; }
+      h1 { letter-spacing: -2.5px; }
+      .hero { padding: 60px 0; }
+      .hero-description { font-size: 14px; }
+      .hero-art { min-height: 300px; }
+      .art-card { width: 88%; }
+      section { padding: 68px 0; }
+      .service-grid, .portfolio-grid, .process-grid { grid-template-columns: 1fr; }
+      .service-card { padding: 24px; }
+      .project-preview { min-height: 220px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a class="logo" href="#">
+        <span class="logo-mark">W</span>
+        WEBORA
+      </a>
+
+      <nav class="nav-links">
+        <a href="#services">Услуги</a>
+        <a href="#portfolio">Работы</a>
+        <a href="#process">Процесс</a>
+        <a href="#about">О студии</a>
+      </nav>
+
+      <a class="button" href="#contact">Обсудить проект ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Веб-студия WEBORA</div>
+          <h1>Сайты, которые <span>работают</span> на ваш бизнес.</h1>
+          <p class="hero-description">
+            Создаём современные сайты для компаний и предпринимателей.
+            Помогаем представить ваш бизнес в интернете и сделать первый
+            шаг к новым клиентам.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#contact">Обсудить мой сайт ↗</a>
+            <a class="button button-outline" href="#portfolio">Наши концепты</a>
+          </div>
+          <p class="hero-note">Работаем с бизнесом в России и странах СНГ.</p>
+        </div>
+
+        <div class="hero-art">
+          <div class="art-circle"></div>
+          <div class="art-card">
+            <div class="art-top">
+              <span>WEBORA / DIGITAL</span>
+              <span class="art-dots"><i></i><i></i><i></i></span>
+            </div>
+            <div class="art-title">
+              Your business.<br>
+              <span>New level.</span>
+            </div>
+            <div class="art-lines">
+              <i></i><i></i><i></i>
+            </div>
+            <div class="art-bottom">
+              <span style="font-size:10px;color:#777">DESIGN · DEVELOPMENT</span>
+              <span class="art-mini-button">LET'S START</span>
+            </div>
+          </div>
+          <div class="art-symbol">W.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-label">Что мы делаем</div>
+        <h2 class="section-heading">Цифровые решения для вашего бизнеса</h2>
+        <p class="section-description">
+          Подбираем формат сайта под задачу, а не предлагаем одно решение всем подряд.
+        </p>
+
+        <div class="service-grid">
+          <article class="service-card">
+            <div class="service-icon">✳</div>
+            <h3>Сайты-визитки</h3>
+            <p>Стильная и понятная страница, которая рассказывает о компании, услугах и способах связи.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">▣</div>
+            <h3>Лендинги</h3>
+            <p>Одностраничные сайты для презентации продукта, услуги или отдельного предложения.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">⌘</div>
+            <h3>Сайты для бизнеса</h3>
+            <p>Многостраничные сайты с разделами, услугами, информацией о компании и контактами.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">◈</div>
+            <h3>Редизайн</h3>
+            <p>Обновление внешнего вида существующего сайта, улучшение структуры и удобства.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">↗</div>
+            <h3>Мобильная адаптация</h3>
+            <p>Настройка отображения сайта на смартфонах, планшетах и компьютерах.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">⚙</div>
+            <h3>Поддержка</h3>
+            <p>Помощь с обновлением информации и развитием сайта после запуска.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+      <div class="container">
+        <div class="section-label">Портфолио</div>
+        <h2 class="section-heading">Идеи, которые становятся сайтами</h2>
+        <p class="section-description">
+          Здесь представлены демонстрационные концепты дизайна. Они показывают возможное направление будущих проектов.
+        </p>
+
+        <div class="portfolio-grid">
+          <article class="project">
+            <div class="project-preview preview-beauty">
+              <div class="preview-window">
+                <small>BEAUTY STUDIO</small>
+                <strong>Красота<br>в деталях.</strong>
+                <span>ЗАПИСАТЬСЯ</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>Beauty Studio</h3>
+              <p>Концепт сайта для салона красоты.</p>
+              <span class="demo-label">ДЕМОНСТРАЦИОННЫЙ ПРОЕКТ</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-preview preview-business">
+              <div class="preview-window">
+                <small>BUSINESS / CONSULTING</small>
+                <strong>Ваш бизнес.<br>Новые возможности.</strong>
+                <span>УЗНАТЬ БОЛЬШЕ</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>Business Concept</h3>
+              <p>Концепт сайта для компании услуг.</p>
+              <span class="demo-label">ДЕМОНСТРАЦИОННЫЙ ПРОЕКТ</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="process" id="process">
+      <div class="container">
+        <div class="section-label">Как мы работаем</div>
+        <h2 class="section-heading">От идеи до готового сайта</h2>
+        <p class="section-description">
+          Понятный процесс без лишней сложности на каждом этапе.
+        </p>
+
+        <div class="process-grid">
+          <article class="process-step">
+            <div class="process-number">01 / ЗНАКОМСТВО</div>
+            <h3>Обсуждаем задачу</h3>
+            <p>Узнаём о вашем бизнесе, целях и пожеланиях к будущему сайту.</p>
+          </article>
+
+          <article class="process-step">
+            <div class="process-number">02 / ПЛАН</div>
+            <h3>Продумываем структуру</h3>
+            <p>Определяем разделы, содержание и визуальное направление.</p>
+          </article>
+
+          <article class="process-step">
+            <div class="process-number">03 / РАЗРАБОТКА</div>
+            <h3>Создаём сайт</h3>
+            <p>Разрабатываем дизайн, собираем страницы и проверяем адаптацию.</p>
+          </article>
+
+          <article class="process-step">
+            <div class="process-number">04 / ЗАПУСК</div>
+            <h3>Публикуем проект</h3>
+            <p>Проверяем работу сайта и передаём готовый результат заказчику.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div>
+          <div class="section-label">О WEBORA</div>
+          <h2 class="section-heading">Хороший сайт начинается с понимания бизнеса.</h2>
+          <p class="section-description">
+            WEBORA — веб-студия, ориентированная на создание понятных,
+            современных и удобных цифровых решений для бизнеса.
+            Наша цель — не просто сделать красивую страницу, а помочь
+            компании достойно представить себя в интернете.
+          </p>
+        </div>
+
+        <div class="about-highlight">
+          <strong>Дизайн. Технологии. Результат.</strong>
+          <p>
+            Внимание к деталям, понятная коммуникация и индивидуальный
+            подход к каждой задаче — основа нашей работы.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <div class="section-label">Есть идея?</div>
+          <h2 class="section-heading">Давайте создадим ваш сайт.</h2>
+          <p class="section-description">
+            Расскажите, чем занимается ваш бизнес и какой сайт вам нужен.
+            Обсудим задачу и возможные варианты реализации.
+          </p>
+        </div>
+
+        <!-- Перед публикацией замените ссылку ниже на свой Telegram -->
+        <a class="button" href="https://t.me/ВАШ_TELEGRAM" target="_blank" rel="noopener noreferrer">
+          Написать в Telegram ↗
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a class="logo" href="#">
+        <span class="logo-mark">W</span>
+        WEBORA
+      </a>
+      <p>© <span id="year"></span> WEBORA. Все права защищены.</p>
+      <p>Сайты, которые работают на ваш бизнес.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
