@@ -1,0 +1,417 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f3ed">
+  <meta name="description" content="Beauty Studio — пространство красоты и заботы о себе. Маникюр, уход за лицом, брови и ресницы.">
+  <title>Beauty Studio — пространство красоты</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #f7f3ed;
+      --white: #fffdf9;
+      --ink: #292521;
+      --muted: #817970;
+      --pink: #d9a9a0;
+      --pink-dark: #b77d74;
+      --line: #e9e1d8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(1160px, calc(100% - 44px)); margin: auto; }
+    .serif { font-family: 'Playfair Display', serif; font-weight: 400; }
+    .eyebrow {
+      color: var(--pink-dark);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .section { padding: 105px 0; }
+    .section-heading { max-width: 650px; margin-bottom: 45px; }
+    .section-heading h2 {
+      font-size: clamp(36px, 5vw, 54px);
+      line-height: 1.12;
+      margin: 13px 0;
+    }
+    .section-heading p { color: var(--muted); max-width: 500px; }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(247,243,237,.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+    .logo { font-size: 22px; letter-spacing: 3px; font-weight: 700; }
+    .logo span { color: var(--pink-dark); }
+    .nav-links { display: flex; gap: 30px; font-size: 13px; color: #655e57; }
+    .nav-links a:hover { color: var(--pink-dark); }
+    .nav-button, .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      background: var(--ink);
+      color: white;
+      border: 1px solid var(--ink);
+      border-radius: 3px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: .25s;
+      cursor: pointer;
+    }
+    .nav-button:hover, .button:hover { background: var(--pink-dark); border-color: var(--pink-dark); }
+    .menu-toggle { display: none; background: none; border: 0; font-size: 25px; cursor: pointer; }
+
+    .hero { padding: 75px 0 85px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 65px;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: clamp(48px, 6.5vw, 78px);
+      line-height: 1.03;
+      margin: 20px 0;
+    }
+    .hero h1 em { color: var(--pink-dark); font-style: normal; }
+    .hero-copy { color: var(--muted); max-width: 430px; margin-bottom: 30px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; }
+    .button-light { background: transparent; color: var(--ink); }
+    .button-light:hover { color: white; }
+    .hero-note { margin-top: 30px; color: var(--muted); font-size: 12px; }
+    .hero-image { position: relative; }
+    .hero-image img {
+      display: block;
+      width: 100%;
+      height: 570px;
+      object-fit: cover;
+      border-radius: 48% 48% 3px 3px;
+    }
+    .image-label {
+      position: absolute;
+      bottom: 25px;
+      left: -30px;
+      background: var(--white);
+      padding: 20px 25px;
+      box-shadow: 0 10px 35px #00000010;
+    }
+    .image-label strong { display: block; font-family: 'Playfair Display', serif; font-size: 23px; font-weight: 400; }
+    .image-label span { font-size: 11px; color: var(--muted); }
+
+    .intro { background: var(--white); text-align: center; padding: 65px 0; }
+    .intro h2 { font-size: clamp(29px, 4vw, 42px); margin: 12px auto; max-width: 720px; }
+    .intro p { color: var(--muted); max-width: 590px; margin: auto; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .service-card {
+      background: var(--white);
+      padding: 30px;
+      border: 1px solid var(--line);
+      transition: .25s;
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px #00000008; }
+    .service-number { color: var(--pink-dark); font-size: 12px; letter-spacing: 2px; }
+    .service-card h3 { font-family: 'Playfair Display', serif; font-size: 25px; font-weight: 400; margin: 17px 0 8px; }
+    .service-card p { color: var(--muted); font-size: 13px; min-height: 63px; }
+    .service-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line); }
+    .price { font-size: 15px; font-weight: 700; }
+    .duration { color: var(--muted); font-size: 11px; }
+
+    .about { background: #eee6dc; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+    .about-image img { width: 100%; height: 500px; object-fit: cover; }
+    .about-text h2 { font-size: clamp(38px, 5vw, 55px); line-height: 1.1; margin: 15px 0 22px; }
+    .about-text p { color: #746c63; margin-bottom: 18px; }
+    .about-points { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+    .about-points strong { display: block; font-family: 'Playfair Display', serif; font-size: 25px; font-weight: 400; }
+    .about-points span { font-size: 12px; color: var(--muted); }
+
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .team-card img { width: 100%; height: 340px; object-fit: cover; }
+    .team-card h3 { font-family: 'Playfair Display', serif; font-size: 23px; font-weight: 400; margin-top: 15px; }
+    .team-card p { color: var(--muted); font-size: 12px; }
+
+    .gallery { background: var(--white); }
+    .gallery-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 15px; }
+    .gallery-grid img { width: 100%; height: 290px; object-fit: cover; }
+    .gallery-grid img:first-child { height: 360px; }
+
+    .booking { padding: 95px 0; background: #292521; color: white; text-align: center; }
+    .booking h2 { font-size: clamp(40px, 6vw, 62px); line-height: 1.1; margin: 15px 0; }
+    .booking p { color: #c4bbb2; max-width: 500px; margin: 0 auto 28px; }
+    .booking .button { background: var(--pink); border-color: var(--pink); color: #292521; }
+    .booking .button:hover { background: white; border-color: white; }
+    .booking .eyebrow { color: #e2b8ae; }
+
+    .footer { padding: 35px 0; background: #211e1b; color: #c4bbb2; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .footer .logo { color: white; }
+    .footer small { font-size: 11px; }
+    .footer-links { display: flex; gap: 22px; font-size: 12px; }
+
+    @media (max-width: 850px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 78px;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        padding: 25px;
+        flex-direction: column;
+        gap: 18px;
+        border-bottom: 1px solid var(--line);
+      }
+      .nav-links.open { display: flex; }
+      .menu-toggle { display: block; }
+      .nav-button { display: none; }
+      .hero-grid, .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero { padding-top: 50px; }
+      .hero-image { max-width: 570px; margin: auto; width: 100%; }
+      .hero-image img { height: 460px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-image { order: 2; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid img:first-child { height: 290px; }
+    }
+    @media (max-width: 560px) {
+      .container { width: min(100% - 32px, 1160px); }
+      .section { padding: 70px 0; }
+      .hero h1 { font-size: 49px; }
+      .hero-image img { height: 390px; }
+      .image-label { left: -5px; }
+      .services-grid, .team-grid, .gallery-grid { grid-template-columns: 1fr; }
+      .service-card p { min-height: auto; }
+      .team-card img { height: 390px; }
+      .gallery-grid img, .gallery-grid img:first-child { height: 300px; }
+      .about-image img { height: 370px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container nav">
+    <a class="logo" href="#">BEAUTY<span>.</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#services">Услуги</a>
+      <a href="#about">О студии</a>
+      <a href="#team">Мастера</a>
+      <a href="#gallery">Галерея</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a class="nav-button" href="#contacts">Записаться</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Пространство красоты и заботы</div>
+        <h1 class="serif">Твоя красота.<br><em>Твои правила.</em></h1>
+        <p class="hero-copy">Место, где можно замедлиться, выдохнуть и посвятить время себе. Бережный уход, внимание к деталям и атмосфера уюта.</p>
+        <div class="hero-actions">
+          <a class="button" href="#contacts">Записаться</a>
+          <a class="button button-light" href="#services">Наши услуги</a>
+        </div>
+        <p class="hero-note">Красота начинается с заботы о себе.</p>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&w=1000&q=85" alt="Интерьер салона красоты">
+        <div class="image-label">
+          <strong>Время для себя</strong>
+          <span>Твоя маленькая пауза от большого мира</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="container">
+      <div class="eyebrow">Добро пожаловать</div>
+      <h2 class="serif">Красота в деталях, забота в каждом прикосновении</h2>
+      <p>Мы верим, что уход за собой — это не роскошь, а важная часть хорошего самочувствия. Приходи за настроением, а уходи с улыбкой.</p>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Наши направления</div>
+        <h2 class="serif">Услуги и уход</h2>
+        <p>Подбираем процедуры с учётом твоих пожеланий. Каждая деталь имеет значение.</p>
+      </div>
+      <div class="services-grid">
+        <article class="service-card">
+          <span class="service-number">01 / NAILS</span>
+          <h3>Маникюр</h3>
+          <p>Аккуратная обработка, уход за ногтями и покрытие в твоём любимом оттенке.</p>
+          <div class="service-bottom"><span class="price">от 1 500 ₽</span><span class="duration">60–90 мин.</span></div>
+        </article>
+        <article class="service-card">
+          <span class="service-number">02 / BROWS</span>
+          <h3>Брови</h3>
+          <p>Форма, окрашивание и укладка с учётом особенностей твоего лица.</p>
+          <div class="service-bottom"><span class="price">от 900 ₽</span><span class="duration">30–45 мин.</span></div>
+        </article>
+        <article class="service-card">
+          <span class="service-number">03 / LASHES</span>
+          <h3>Ресницы</h3>
+          <p>Выразительный взгляд и естественный результат без лишней яркости.</p>
+          <div class="service-bottom"><span class="price">от 1 800 ₽</span><span class="duration">60–120 мин.</span></div>
+        </article>
+        <article class="service-card">
+          <span class="service-number">04 / SKIN</span>
+          <h3>Уход за лицом</h3>
+          <p>Мягкие уходовые процедуры для свежего вида и приятного ощущения кожи.</p>
+          <div class="service-bottom"><span class="price">от 2 000 ₽</span><span class="duration">45–60 мин.</span></div>
+        </article>
+        <article class="service-card">
+          <span class="service-number">05 / HAIR</span>
+          <h3>Укладка</h3>
+          <p>Лёгкие повседневные образы и укладки для особенных событий.</p>
+          <div class="service-bottom"><span class="price">от 1 500 ₽</span><span class="duration">45–60 мин.</span></div>
+        </article>
+        <article class="service-card">
+          <span class="service-number">06 / SPA</span>
+          <h3>Ритуалы ухода</h3>
+          <p>Время расслабиться, восстановить силы и насладиться заботой о себе.</p>
+          <div class="service-bottom"><span class="price">от 2 500 ₽</span><span class="duration">60 мин.</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section about" id="about">
+    <div class="container about-grid">
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1000&q=85" alt="Процедура ухода за волосами">
+      </div>
+      <div class="about-text">
+        <div class="eyebrow">Немного о нас</div>
+        <h2 class="serif">Место, где ты — в центре внимания</h2>
+        <p>Beauty Studio — концепция современной студии красоты, в которой сочетаются эстетика, комфорт и профессиональный подход.</p>
+        <p>Мы продумали каждую деталь: от спокойной атмосферы до индивидуального внимания к каждому гостю.</p>
+        <div class="about-points">
+          <div><strong>01</strong><span>Внимание к деталям</span></div>
+          <div><strong>02</strong><span>Комфортная атмосфера</span></div>
+          <div><strong>03</strong><span>Индивидуальный подход</span></div>
+          <div><strong>04</strong><span>Забота о каждом госте</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="team">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Наша команда</div>
+        <h2 class="serif">Люди, которым можно доверять</h2>
+        <p>Знакомься с командой Beauty Studio. Здесь будут представлены специалисты студии.</p>
+      </div>
+      <div class="team-grid">
+        <article class="team-card">
+          <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=700&q=85" alt="Портрет мастера">
+          <h3>Анна</h3>
+          <p>Мастер маникюра · Демонстрационный профиль</p>
+        </article>
+        <article class="team-card">
+          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=700&q=85" alt="Портрет специалиста">
+          <h3>Мария</h3>
+          <p>Brow-мастер · Демонстрационный профиль</p>
+        </article>
+        <article class="team-card">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=85" alt="Портрет специалиста">
+          <h3>Екатерина</h3>
+          <p>Специалист по уходу · Демонстрационный профиль</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section gallery" id="gallery">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Атмосфера студии</div>
+        <h2 class="serif">Красота, которую хочется сохранить</h2>
+        <p>Несколько визуальных образов нашего пространства и эстетики ухода.</p>
+      </div>
+      <div class="gallery-grid">
+        <img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=900&q=85" alt="Маникюр">
+        <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=800&q=85" alt="Косметические средства">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=800&q=85" alt="Уход за ногтями">
+      </div>
+    </div>
+  </section>
+
+  <section class="booking" id="contacts">
+    <div class="container">
+      <div class="eyebrow">Твой момент настал</div>
+      <h2 class="serif">Пора уделить время себе</h2>
+      <p>Выбери удобное время и свяжись с нами. Будем рады видеть тебя в Beauty Studio!</p>
+      <a class="button" href="https://t.me/LihtOnK12" target="_blank" rel="noopener">Записаться через Telegram</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <a class="logo" href="#">BEAUTY<span>.</span></a>
+    <small>© <span id="year"></span> Beauty Studio. Демонстрационный проект WEBORA.</small>
+    <div class="footer-links">
+      <a href="#services">Услуги</a>
+      <a href="#about">О студии</a>
+      <a href="#contacts">Контакты</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    menuToggle.textContent = navLinks.classList.contains('open') ? '×' : '☰';
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuToggle.textContent = '☰';
+    });
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
